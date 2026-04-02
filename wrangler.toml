@@ -1,0 +1,5 @@
+name = "buddydex"
+pages_build_output_dir = "./packages/web/dist"
+
+[vars]
+SKIP_DEPENDENCY_INSTALL = "true"
