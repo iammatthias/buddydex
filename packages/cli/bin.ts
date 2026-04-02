@@ -7,6 +7,7 @@ import cmdInject from "./commands/inject.ts";
 import cmdRestore from "./commands/restore.ts";
 import cmdShow from "./commands/show.ts";
 import cmdRoll from "./commands/roll.ts";
+import cmdName from "./commands/name.ts";
 
 const USAGE = `
   BuddyDex CLI
@@ -17,6 +18,7 @@ const USAGE = `
     restore   Restore your original UUID from backup
     show      Show your current buddy
     roll      Roll a specific UUID to see its buddy
+    name      View or set your buddy's name and personality
 
   Hunt options:
     --species <name>       Filter by species
@@ -31,11 +33,17 @@ const USAGE = `
   Inject options:
     --preview              Preview without saving
 
+  Name options:
+    --name <name>          Set buddy name
+    --personality <text>   Set buddy personality
+
   Examples:
     buddydex hunt --species dragon --rarity legendary
     buddydex hunt --rarity legendary --perfect 70
     buddydex inject <seed>
     buddydex show
+    buddydex name
+    buddydex name --name "Ember" --personality "Chaotic but loyal"
 `;
 
 const [command, ...rest] = process.argv.slice(2);
@@ -46,6 +54,7 @@ const commands: Record<string, (argv: string[]) => void> = {
   restore: cmdRestore,
   show: cmdShow,
   roll: cmdRoll,
+  name: cmdName,
 };
 
 if (command && command in commands) {

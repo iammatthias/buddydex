@@ -481,6 +481,22 @@ body {
   color: var(--dim);
 }
 
+/* ── note ────────────────────────── */
+
+.note {
+  font-size: 11px;
+  color: var(--dim);
+  margin-top: 16px;
+  padding: 8px 12px;
+  border-left: 2px solid var(--faint);
+  line-height: 1.6;
+}
+
+.note code {
+  font-family: inherit;
+  color: var(--accent);
+}
+
 /* ── footer ──────────────────────── */
 
 .footer {

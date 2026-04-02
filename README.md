@@ -86,6 +86,8 @@ buddydex inject <seed> --preview  # preview without saving
 buddydex show       # current buddy
 buddydex restore    # restore original from backup
 buddydex roll <id>  # preview what a UUID produces
+buddydex name       # view current name and personality
+buddydex name --name "Ember" --personality "Chaotic but loyal"
 ```
 
 ## Species
