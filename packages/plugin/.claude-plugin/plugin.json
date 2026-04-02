@@ -1,0 +1,7 @@
+{
+  "name": "buddydex",
+  "description": "BuddyDex — browse, hunt, and inject Claude Code buddies. Brute-force the deterministic Wyhash pipeline to find your perfect companion.",
+  "author": {
+    "name": "iammatthias"
+  }
+}

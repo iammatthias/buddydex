@@ -1,0 +1,17 @@
+{
+  "name": "@buddy/root",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "cli": "bun packages/cli/bin.ts",
+    "cli:build": "bun build packages/cli/bin.ts --outfile packages/cli/dist/buddydex.js --target bun",
+    "web": "vite packages/web",
+    "web:build": "vite build --config packages/web/vite.config.ts",
+    "web:preview": "vite preview --config packages/web/vite.config.ts"
+  },
+  "devDependencies": {
+    "vite": "^8.0.3"
+  }
+}

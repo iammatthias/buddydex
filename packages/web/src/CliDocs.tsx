@@ -1,0 +1,102 @@
+import { SPECIES, RARITIES } from "@buddy/engine/constants";
+
+const rates = [60, 25, 10, 4, 1];
+const floors = [5, 15, 25, 35, 50];
+
+export default function CliDocs() {
+  return (
+    <div className="app">
+      <div className="header">
+        <h1>BUDDYDEX</h1>
+        <nav className="header-nav"><a href="/">hunt</a></nav>
+      </div>
+
+      <div className="docs">
+        <h2>install</h2>
+        <p>Requires <a href="https://bun.sh" style={{ color: "var(--accent)" }}>Bun</a>.</p>
+        <pre>bunx buddydex &lt;command&gt;</pre>
+        <p>Or install globally:</p>
+        <pre>bun add -g buddydex</pre>
+
+        <h2>hunt</h2>
+        <p>Search for buddies matching your criteria. Generates random UUIDs, hashes each with Wyhash, and filters the results.</p>
+        <pre>{`bunx buddydex hunt --species dragon --rarity legendary
+bunx buddydex hunt --rarity legendary --perfect 70
+bunx buddydex hunt --min-total 400 --tries 5000000
+bunx buddydex hunt --shiny --tries 50000000`}</pre>
+
+        <table>
+          <thead>
+            <tr><th>flag</th><th>example</th><th>description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>--species</code></td><td><code>--species goose</code></td><td>filter by species</td></tr>
+            <tr><td><code>--rarity</code></td><td><code>--rarity legendary</code></td><td>filter by rarity</td></tr>
+            <tr><td><code>--shiny</code></td><td></td><td>only shiny (1%)</td></tr>
+            <tr><td><code>--min-stat</code></td><td><code>--min-stat chaos:90</code></td><td>min value for one stat</td></tr>
+            <tr><td><code>--min-total</code></td><td><code>--min-total 400</code></td><td>min total bst</td></tr>
+            <tr><td><code>--perfect</code></td><td><code>--perfect 70</code></td><td>every stat &ge; this</td></tr>
+            <tr><td><code>--tries</code></td><td><code>--tries 5000000</code></td><td>uuids to test (default 1m)</td></tr>
+            <tr><td><code>--limit</code></td><td><code>--limit 20</code></td><td>max results (default 10)</td></tr>
+          </tbody>
+        </table>
+
+        <h2>inject</h2>
+        <p>Patch <code>~/.claude.json</code> with a UUID from hunt results. Backs up your original UUID automatically.</p>
+        <pre>{`bunx buddydex inject <seed>
+bunx buddydex inject <seed> --preview`}</pre>
+
+        <h2>show</h2>
+        <p>Display your current buddy.</p>
+        <pre>bunx buddydex show</pre>
+
+        <h2>restore</h2>
+        <p>Restore your original UUID from backup.</p>
+        <pre>bunx buddydex restore</pre>
+
+        <h2>roll</h2>
+        <p>See what buddy a specific UUID produces without injecting.</p>
+        <pre>bunx buddydex roll &lt;uuid&gt;</pre>
+
+        <h2>species</h2>
+        <p>{SPECIES.join(", ")}</p>
+
+        <h2>rarity</h2>
+        <table>
+          <thead>
+            <tr><th>tier</th><th>rate</th><th>shiny</th><th>stat floor</th></tr>
+          </thead>
+          <tbody>
+            {RARITIES.map((r, i) => (
+              <tr key={r}>
+                <td>{r}</td>
+                <td>{rates[i]}%</td>
+                <td>{(rates[i] * 0.01).toFixed(2)}%</td>
+                <td>{floors[i]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <h2>how it works</h2>
+        <pre>{`userId = oauthAccount?.accountUuid ?? userID ?? "anon"
+seed   = Wyhash(userId + "friend-2026-401") & 0xFFFFFFFF
+rng    = Mulberry32(seed)
+bones  = { rarity, species, eye, hat, shiny, stats }`}</pre>
+        <p>The CLI uses native <code>Bun.hash()</code> (Wyhash). The web UI uses <code>@zig-wasm/hash</code> — the same Zig Wyhash compiled to WASM. Results are identical.</p>
+
+        <h2>safety</h2>
+        <ul>
+          <li>original uuid backed up before first injection</li>
+          <li><code>buddydex restore</code> reverses everything</li>
+          <li><code>--preview</code> to check before committing</li>
+          <li>auth is unaffected — uses oauth tokens, not the uuid</li>
+        </ul>
+
+        <h2>claude code plugin</h2>
+        <pre>claude plugin add github:iammatthias/buddy-reroller</pre>
+        <p>Adds the <code>/reroll</code> slash command inside Claude Code.</p>
+      </div>
+    </div>
+  );
+}
