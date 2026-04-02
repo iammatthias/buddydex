@@ -46,7 +46,14 @@ const USAGE = `
     buddydex name --name "Ember" --personality "Chaotic but loyal"
 `;
 
+import pkg from "./package.json";
+
 const [command, ...rest] = process.argv.slice(2);
+
+if (command === "--version" || command === "-v") {
+  console.log(pkg.version);
+  process.exit(0);
+}
 
 const commands: Record<string, (argv: string[]) => void> = {
   hunt: cmdHunt,
