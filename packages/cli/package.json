@@ -1,6 +1,6 @@
 {
   "name": "buddydex",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Hunt, browse, and inject Claude Code buddies",
   "type": "module",
   "bin": {
