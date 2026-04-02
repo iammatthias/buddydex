@@ -1,27 +1,21 @@
-import { useState, useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { STAT_NAMES } from "@buddy/engine/constants";
 import type { SearchResult } from "../types.ts";
 import { BuddyArt } from "./BuddyArt.tsx";
 import { StatBar } from "./StatBar.tsx";
+import { CopyText } from "./CopyText.tsx";
 
 export function Modal({ result, onClose }: {
   result: SearchResult;
   onClose: () => void;
 }) {
-  const [copied, setCopied] = useState(false);
-
-  const copy = useCallback(() => {
-    navigator.clipboard.writeText(result.seed).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1200);
-    });
-  }, [result.seed]);
-
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
   }, [onClose]);
+
+  const cmd = `bunx buddydex inject ${result.seed}`;
 
   return (
     <div className="overlay" onClick={onClose}>
@@ -37,13 +31,12 @@ export function Modal({ result, onClose }: {
           {STAT_NAMES.map(n => <StatBar key={n} name={n} value={result.stats[n] ?? 0} />)}
         </div>
         <div className="seed">
-          <div className="seed-row">
+          <CopyText text={result.seed} className="seed-row">
             <code>{result.seed}</code>
-            <button className={copied ? "copied" : ""} onClick={copy}>
-              {copied ? "copied!" : "copy"}
-            </button>
-          </div>
-          <div className="seed-cmd">$ bunx buddydex inject {result.seed}</div>
+          </CopyText>
+          <CopyText text={cmd} className="seed-cmd">
+            <code>$ {cmd}</code>
+          </CopyText>
         </div>
       </div>
     </div>

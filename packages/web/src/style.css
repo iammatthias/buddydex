@@ -333,40 +333,64 @@ body {
   border-top: 1px solid var(--faint);
 }
 
-.seed-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* ── copyable ────────────────────── */
+
+.copyable {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  transition: opacity 0.1s;
 }
+
+.copyable:hover { opacity: 0.8; }
+
+.copy-tip {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: inherit;
+  font-size: 10px;
+  color: var(--green);
+  pointer-events: none;
+  animation: tipIn 0.15s ease;
+}
+
+@keyframes tipIn {
+  from { opacity: 0; transform: translateY(-50%) translateX(4px); }
+  to { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+.seed-row {
+  background: var(--surface);
+  border: 1px solid var(--faint);
+  border-radius: 4px;
+  padding: 9px 12px;
+}
+
+.seed-row:hover { border-color: var(--dim); }
 
 .seed-row code {
-  flex: 1;
   font-family: inherit;
-  font-size: 11px;
-  color: var(--accent);
+  font-size: 12px;
+  color: var(--fg);
   word-break: break-all;
-  user-select: all;
 }
-
-.seed-row button {
-  font-family: inherit;
-  font-size: 11px;
-  background: none;
-  color: var(--dim);
-  border: 1px solid var(--faint);
-  padding: 3px 10px;
-  cursor: pointer;
-  border-radius: 2px;
-}
-
-.seed-row button:hover { color: var(--fg); border-color: var(--dim); }
-.seed-row button.copied { color: var(--green); border-color: var(--green); }
 
 .seed-cmd {
   margin-top: 6px;
+  padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--faint);
+  border-radius: 4px;
+}
+
+.seed-cmd:hover { border-color: var(--dim); }
+
+.seed-cmd code {
+  font-family: inherit;
   font-size: 11px;
   color: var(--fg);
-  user-select: all;
 }
 
 /* ── docs ────────────────────────── */
