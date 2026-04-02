@@ -2,9 +2,9 @@
   --bg: #0a0a0a;
   --surface: #141414;
   --fg: #e0e0e0;
-  --dim: #555;
+  --dim: #777;
   --faint: #2a2a2a;
-  --accent: #888;
+  --accent: #aaa;
   --green: #6a9;
   --blue: #69c;
   --purple: #a7b;
@@ -365,7 +365,8 @@ body {
 .seed-cmd {
   margin-top: 6px;
   font-size: 11px;
-  color: var(--dim);
+  color: var(--fg);
+  user-select: all;
 }
 
 /* ── docs ────────────────────────── */
