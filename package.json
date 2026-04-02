@@ -7,6 +7,7 @@
   "scripts": {
     "cli": "bun packages/cli/bin.ts",
     "cli:build": "bun build packages/cli/bin.ts --outfile packages/cli/dist/buddydex.js --target bun",
+    "cli:publish": "bash scripts/publish-cli.sh",
     "web": "vite packages/web",
     "web:build": "vite build --config packages/web/vite.config.ts",
     "web:preview": "vite preview --config packages/web/vite.config.ts"

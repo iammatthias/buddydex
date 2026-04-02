@@ -1,10 +1,10 @@
 {
   "name": "buddydex",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Hunt, browse, and inject Claude Code buddies",
   "type": "module",
   "bin": {
-    "buddydex": "./dist/buddydex.js"
+    "buddydex": "dist/buddydex.js"
   },
   "files": ["dist"],
   "keywords": ["claude", "claude-code", "buddy", "companion", "wyhash"],
@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iammatthias/buddydex"
+    "url": "git+https://github.com/iammatthias/buddydex.git"
   },
   "dependencies": {
     "@buddy/engine": "workspace:*"
