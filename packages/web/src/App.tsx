@@ -75,7 +75,7 @@ export default function App() {
   if (!ready) {
     return (
       <div className="app">
-        <div className="header"><h1>BUDDYDEX</h1></div>
+        <div className="header"><h1>BUDDYDEX</h1><small><em>gotta hash them all</em></small></div>
         <div className="status">loading…</div>
       </div>
     );
@@ -89,6 +89,7 @@ export default function App() {
     <div className="app">
       <div className="header">
         <h1>BUDDYDEX</h1>
+        <small><em>gotta hash them all</em></small>
         <nav className="header-nav"><a href="/cli.html">cli docs</a></nav>
       </div>
 
@@ -104,12 +105,18 @@ export default function App() {
         {results.length === 0 && !searching && (
           <div className="empty">no buddies yet — set filters and hit hunt</div>
         )}
-        {results.map((r, i) => (
+        {results.map((r) => (
           <BuddyCard key={r.seed} result={r} onClick={() => setSelected(r)} />
         ))}
       </div>
 
       {selected && <Modal result={selected} onClose={() => setSelected(null)} />}
+
+      <footer className="footer">
+        <a href="https://github.com/iammatthias/buddydex">github</a>
+        <span>·</span>
+        <a href="https://www.npmjs.com/package/buddydex">npm</a>
+      </footer>
     </div>
   );
 }

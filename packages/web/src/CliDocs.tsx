@@ -8,6 +8,7 @@ export default function CliDocs() {
     <div className="app">
       <div className="header">
         <h1>BUDDYDEX</h1>
+        <small><em>gotta hash them all</em></small>
         <nav className="header-nav"><a href="/">hunt</a></nav>
       </div>
 
@@ -97,6 +98,12 @@ bones  = { rarity, species, eye, hat, shiny, stats }`}</pre>
         <pre>claude plugin add github:iammatthias/buddy-reroller</pre>
         <p>Adds the <code>/reroll</code> slash command inside Claude Code.</p>
       </div>
+
+      <footer className="footer">
+        <a href="https://github.com/iammatthias/buddydex">github</a>
+        <span>·</span>
+        <a href="https://www.npmjs.com/package/buddydex">npm</a>
+      </footer>
     </div>
   );
 }

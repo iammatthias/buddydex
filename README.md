@@ -1,6 +1,8 @@
 # BuddyDex
 
-Get the buddy you want.
+*Gotta hash them all.*
+
+[Web](https://buddydex.fun) · [npm](https://www.npmjs.com/package/buddydex) · [GitHub](https://github.com/iammatthias/buddydex)
 
 > [!CAUTION]
 > Anthropic may patch this, or worse. Use at your own risk.
